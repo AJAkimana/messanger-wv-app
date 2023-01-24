@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "An example webhook for Facebook Messenger that shows how to use webviews with your bot.",
   "main": "app.js",
-  "engines": {
-    "node": "9.5.x"
-  },
   "scripts": {
     "start": "node app.js"
   },

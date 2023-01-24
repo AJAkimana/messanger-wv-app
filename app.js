@@ -49,6 +49,7 @@ app.get("/options", (req, res, next) => {
     }
     res.sendFile("public/options.html", { root: __dirname });
   }
+  res.send("Ooh, It supposed to be in fb or me, correct");
 });
 
 // Handle postback from webview

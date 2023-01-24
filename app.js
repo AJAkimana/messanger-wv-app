@@ -119,6 +119,7 @@ app.get("/webhook", (req, res) => {
       res.sendStatus(403);
     }
   }
+  console.log("Web hook Endpoind", mode, token, challenge);
 });
 
 // Handles messages events

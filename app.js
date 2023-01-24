@@ -107,6 +107,7 @@ app.get("/webhook", (req, res) => {
   let token = req.query["hub.verify_token"];
   let challenge = req.query["hub.challenge"];
 
+  console.log("Web hook Endpoind", mode, token, challenge);
   // Check if a token and mode were sent
   if (mode && token) {
     // Check the mode and token sent are correct
@@ -119,7 +120,6 @@ app.get("/webhook", (req, res) => {
       res.sendStatus(403);
     }
   }
-  console.log("Web hook Endpoind", mode, token, challenge);
 });
 
 // Handles messages events

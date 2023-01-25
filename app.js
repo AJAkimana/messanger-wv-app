@@ -168,7 +168,7 @@ function setRoomPreferences(sender_psid) {
       type: "template",
       payload: {
         template_type: "button",
-        text: "OK, let's set your room preferences so I won't need to ask for them in the future.",
+        text: "OK, Set your room preferences.",
         buttons: [
           {
             type: "web_url",
@@ -182,7 +182,7 @@ function setRoomPreferences(sender_psid) {
     },
   };
 
-  return JSON.stringify(response);
+  return response;
 }
 
 // Sends response messages via the Send API

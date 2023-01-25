@@ -85,11 +85,12 @@ app.post("/webhook", (req, res) => {
 
       // Get the sender PSID
       let sender_psid = webhook_event.sender.id;
-      console.log(`Sender PSID: ${sender_psid}`);
+      // console.log(`Sender PSID: ${sender_psid}`);
 
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
+        console.log("webhook_event.message=>called");
         handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
         console.log("webhook_event.postback");
@@ -155,7 +156,7 @@ function handleMessage(sender_psid, received_message) {
       text: `Sorry, I don't understand what you mean.`,
     };
   }
-
+  console.log(`Sender PSID: ${sender_psid}`);
   // Send the response message
   callSendAPI(sender_psid, response);
 }
@@ -199,7 +200,7 @@ function callSendAPI(sender_psid, response) {
   // Send the HTTP request to the Messenger Platform
   request(
     {
-      uri: "https://graph.facebook.com/v15.0/me/messages",
+      uri: "https://graph.facebook.com/v2.6/me/messages",
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,

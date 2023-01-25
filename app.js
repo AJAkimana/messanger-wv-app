@@ -64,11 +64,11 @@ app.get("/optionspostback", (req, res) => {
   let response = {
     text: `Great, I will book you a ${body.bed} bed, with ${body.pillows} pillows and a ${body.view} view.`,
   };
-
+  console.log({ body });
+  callSendAPI(body.psid, response);
   res
     .status(200)
     .send("Please close this window to return to the conversation thread.");
-  callSendAPI(body.psid, response);
 });
 
 // Accepts POST requests at the /webhook endpoint
@@ -90,10 +90,8 @@ app.post("/webhook", (req, res) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
-        console.log("webhook_event.message=>called");
         handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
-        console.log("webhook_event.postback");
         handlePostback(sender_psid, webhook_event.postback);
       }
     });

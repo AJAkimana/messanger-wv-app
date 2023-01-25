@@ -143,7 +143,7 @@ function handleMessage(sender_psid, received_message) {
         .trim()
         .toLowerCase()
     ) {
-      case "room preferences":
+      case "start connect":
         response = setRoomPreferences(sender_psid);
         break;
       default:
@@ -169,12 +169,12 @@ function setRoomPreferences(sender_psid) {
       type: "template",
       payload: {
         template_type: "button",
-        text: "OK, Set your room preferences.",
+        text: "Now, you can start the connect app.",
         buttons: [
           {
             type: "web_url",
             url: SERVER_URL + "/options",
-            title: "Set preferences",
+            title: "GTM 4 Connect",
             webview_height_ratio: "compact",
             messenger_extensions: true,
           },

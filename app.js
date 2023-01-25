@@ -182,7 +182,7 @@ function setRoomPreferences(sender_psid) {
     },
   };
 
-  return response;
+  return JSON.stringify(response);
 }
 
 // Sends response messages via the Send API

@@ -175,7 +175,7 @@ function setRoomPreferences(sender_psid) {
             url: SERVER_URL + "/options",
             title: "Set preferences",
             // webview_height_ratio: "compact",
-            // messenger_extensions: true,
+            messenger_extensions: true,
           },
         ],
       },

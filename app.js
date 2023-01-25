@@ -75,7 +75,7 @@ app.get("/optionspostback", (req, res) => {
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
-  console.log("===>Body", body);
+  // console.log("===>Body", body);
   // Check the webhook event is from a Page subscription
   if (body.object === "page") {
     body.entry.forEach((entry) => {
@@ -163,18 +163,18 @@ function handleMessage(sender_psid, received_message) {
 // Define the template and webview
 function setRoomPreferences(sender_psid) {
   let response = {
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "button",
-        "text": "OK, let's set your room preferences so I won't need to ask for them in the future.",
-        "buttons": [
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "button",
+        text: "OK, let's set your room preferences so I won't need to ask for them in the future.",
+        buttons: [
           {
-            "type": "web_url",
-            "url": SERVER_URL + "/options",
-            "title": "Set preferences",
-            "webview_height_ratio": "compact",
-            "messenger_extensions": true,
+            type: "web_url",
+            url: SERVER_URL + "/options",
+            title: "Set preferences",
+            webview_height_ratio: "compact",
+            messenger_extensions: true,
           },
         ],
       },
@@ -188,12 +188,14 @@ function setRoomPreferences(sender_psid) {
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
-    "recipient": {
-      "id": sender_psid,
+    recipient: {
+      id: sender_psid,
     },
-    "message": response,
+    message: response,
   };
-  // console.log(request_body);
+  console.log("callSendAPI==========>", {
+    request_body: JSON.stringify(response.attachment?.payload?.buttons),
+  });
   // Send the HTTP request to the Messenger Platform
   request(
     {

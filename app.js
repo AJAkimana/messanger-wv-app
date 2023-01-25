@@ -41,14 +41,20 @@ module.exports = app;
 // Serve the options path and set required headers
 app.get("/options", (req, res, next) => {
   let referer = req.get("Referer");
+  console.log("Start======================>//options");
   if (referer) {
+    console.log("Start=========referer=============>//options");
     if (referer.indexOf("www.messenger.com") >= 0) {
+      console.log("Start=========messenger=============>//options");
       res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.messenger.com/");
     } else if (referer.indexOf("www.facebook.com") >= 0) {
+      console.log("Start=========facebook=============>//options");
       res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.facebook.com/");
     }
+    console.log("Start=========sendFile=============>//options");
     res.sendFile("public/options.html", { root: __dirname });
   }
+  console.log("End==========Nada============>//options");
   res.send("Ooh, It supposed to be in fb or me, correct");
 });
 

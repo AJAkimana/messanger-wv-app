@@ -27,6 +27,7 @@ var app = express();
 app.set("port", process.env.PORT || 4002);
 app.use(body_parser.json());
 app.use(express.static("public"));
+app.use(express.static("build"));
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const SERVER_URL = process.env.SERVER_URL;
@@ -52,6 +53,7 @@ app.get("/options", (req, res, next) => {
       res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.facebook.com/");
     }
     console.log("Start=========sendFile=============>//options");
+    return res.sendFile(path.resolve("build", "index.html"));
   }
   console.log("End==========Nada============>//options");
   res.sendFile("public/options.html", { root: __dirname });

@@ -52,10 +52,10 @@ app.get("/options", (req, res, next) => {
       res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.facebook.com/");
     }
     console.log("Start=========sendFile=============>//options");
-    res.sendFile("public/options.html", { root: __dirname });
   }
   console.log("End==========Nada============>//options");
-  res.send("Ooh, It supposed to be in fb or me, correct");
+  res.sendFile("public/options.html", { root: __dirname });
+  // res.send("Ooh, It supposed to be in fb or me, correct");
 });
 
 // Handle postback from webview
@@ -174,8 +174,8 @@ function setRoomPreferences(sender_psid) {
             type: "web_url",
             url: SERVER_URL + "/options",
             title: "Set preferences",
-            // webview_height_ratio: "compact",
-            messenger_extensions: true,
+            webview_height_ratio: "compact",
+            // messenger_extensions: true,
           },
         ],
       },

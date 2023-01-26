@@ -43,20 +43,20 @@ module.exports = app;
 // Serve the options path and set required headers
 app.get("/options", (req, res, next) => {
   let referer = req.get("Referer");
-  console.log("Start======================>//options");
+  // console.log("Start======================>//options");
   if (referer) {
-    console.log("Start=========referer=============>//options");
+    // console.log("Start=========referer=============>//options");
     if (referer.indexOf("www.messenger.com") >= 0) {
-      console.log("Start=========messenger=============>//options");
+      // console.log("Start=========messenger=============>//options");
       res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.messenger.com/");
     } else if (referer.indexOf("www.facebook.com") >= 0) {
-      console.log("Start=========facebook=============>//options");
+      // console.log("Start=========facebook=============>//options");
       res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.facebook.com/");
     }
-    console.log("Start=========sendFile=============>//options");
+    // console.log("Start=========sendFile=============>//options");
     return res.sendFile(path.resolve("build", "index.html"));
   }
-  console.log("End==========Nada============>//options");
+  // console.log("End==========Nada============>//options");
   res.sendFile("public/options.html", { root: __dirname });
   // res.send("Ooh, It supposed to be in fb or me, correct");
 });
@@ -67,7 +67,7 @@ app.get("/optionspostback", (req, res) => {
   let response = {
     text: `Great, I will book you a ${body.bed} bed, with ${body.pillows} pillows and a ${body.view} view.`,
   };
-  console.log({ body });
+  // console.log({ body });
   callSendAPI(body.psid, response);
   res
     .status(200)
@@ -116,7 +116,7 @@ app.get("/webhook", (req, res) => {
   let token = req.query["hub.verify_token"];
   let challenge = req.query["hub.challenge"];
 
-  console.log("Web hook Endpoind", mode, token, challenge);
+  // console.log("Web hook Endpoind", mode, token, challenge);
   // Check if a token and mode were sent
   if (mode && token) {
     // Check the mode and token sent are correct
@@ -157,7 +157,7 @@ function handleMessage(sender_psid, received_message) {
       text: `Sorry, I don't understand what you mean.`,
     };
   }
-  console.log(`Sender PSID: ${sender_psid}`);
+  // console.log(`Sender PSID: ${sender_psid}`);
   // Send the response message
   callSendAPI(sender_psid, response);
 }
@@ -195,9 +195,9 @@ function callSendAPI(sender_psid, response) {
     },
     message: response,
   };
-  console.log("callSendAPI==========>", {
-    request_body: JSON.stringify(response.attachment?.payload?.buttons),
-  });
+  // console.log("callSendAPI==========>", {
+  //   request_body: JSON.stringify(response.attachment?.payload?.buttons),
+  // });
   // Send the HTTP request to the Messenger Platform
   request(
     {

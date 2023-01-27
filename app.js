@@ -131,6 +131,10 @@ app.get("/webhook", (req, res) => {
   }
 });
 
+app.use("/*", (req, res, next) => {
+  res.status(200).send("Success");
+});
+
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;

@@ -54,8 +54,8 @@ app.get("/options", (req, res, next) => {
       res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.facebook.com/");
     }
     // console.log("Start=========sendFile=============>//options");
-    return res.sendFile(path.resolve("build", "index.html"));
   }
+  return res.sendFile(path.resolve("build", "index.html"));
   // console.log("End==========Nada============>//options");
   res.sendFile("public/options.html", { root: __dirname });
   // res.send("Ooh, It supposed to be in fb or me, correct");

@@ -48,10 +48,10 @@ app.get("/options", (req, res, next) => {
     // console.log("Start=========referer=============>//options");
     if (referer.indexOf("www.messenger.com") >= 0) {
       // console.log("Start=========messenger=============>//options");
-      res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.messenger.com/");
+      // res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.messenger.com/");
     } else if (referer.indexOf("www.facebook.com") >= 0) {
       // console.log("Start=========facebook=============>//options");
-      res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.facebook.com/");
+      // res.setHeader("X-Frame-Options", "ALLOW-FROM https://www.facebook.com/");
     }
     // console.log("Start=========sendFile=============>//options");
   }
